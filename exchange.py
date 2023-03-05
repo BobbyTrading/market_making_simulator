@@ -2,8 +2,12 @@ import random
 
 
 class Exchange:
-    def __init__(self):
+    def __init__(self, market):
         self.players = {}
+        self.orders = []
+        self.market = market
+    
+    def reset(self):
         self.orders = []
     
     def register_player(self, player):
@@ -27,8 +31,8 @@ class Exchange:
     def match_orders(self):
         bids = [order for order in self.orders if order.type == "BID"]
         asks = [order for order in self.orders if order.type == "ASK"]
-        bids.sort(key=lambda o: o.price, reverse=True)
-        asks.sort(key=lambda o: o.price, reverse=False)
+        bids.sort(key=lambda o: (o.price, random.random()), reverse=True)
+        asks.sort(key=lambda o: (o.price, random.random()), reverse=False)
 
         removed_bids = []
         removed_asks = []

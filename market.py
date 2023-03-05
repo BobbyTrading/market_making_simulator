@@ -15,6 +15,13 @@ class Market:
     def get_price(self):
         return self.price_stream[self.t]
 
+    @property
+    def get_next_price(self):
+        if self.t + 1 < len(self.price_stream):
+            return self.price_stream[self.t + 1]
+        else:
+            return None
+
     def tick(self):
         self.t += 1
 

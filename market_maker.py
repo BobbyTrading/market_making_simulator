@@ -8,8 +8,8 @@ class MarketMaker(Trader):
         self.trading_fee = trading_fee
         self.id = id
     
-    def place_order(self, exchange, *markets):
-        market = markets[0]
+    def place_order(self, exchange):
+        market = exchange.market
         p = market.get_price
         price_tick = market.tick_size
         orders = exchange.orders
